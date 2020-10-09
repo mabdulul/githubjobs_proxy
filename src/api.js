@@ -1,12 +1,12 @@
 const express = require("express");
 const serverless = require("serverless-http");
 const axios = require("axios");
-var cors = require('cors');
-
-app.use(cors())
+var cors = require("cors");
 
 const app = express();
 const router = express.Router();
+
+app.use(cors());
 
 router.get("/:endpoint([\\/\\w\\.-]*)", (req, res) => {
 	let endpoint =
