@@ -8,8 +8,7 @@ const router = express.Router();
 
 app.use(cors());
 
-router.get("/details/", (req, res) => {
-
+router.get("/details/:endpoint", (req, res) => {
 	let endpoint =
 		"https://jobs.github.com/positions/" + req.params.endpoint + ".json";
 	axios
@@ -22,7 +21,21 @@ router.get("/details/", (req, res) => {
 		});
 });
 
-router.get("/:endpoint([\\/\\w\\.-]*)", (req, res) => {
+// router.get("/:endpoint([\\/\\w\\.-]*)", (req, res) => {
+// 	let endpoint =
+// 		"https://jobs.github.com/positions.json?" + req.params.endpoint;
+// 	axios
+// 		.get(endpoint)
+// 		.then((response) => {
+// 			res.json(response.data);
+// 		})
+// 		.catch((error) => {
+// 			res.json(error);
+// 		});
+// });
+
+
+router.get("/test/:endpoint([\\/\\w\\.-]*)", (req, res) => {
 	let endpoint =
 		"https://jobs.github.com/positions.json?" + req.params.endpoint;
 	axios
