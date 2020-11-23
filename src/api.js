@@ -23,10 +23,18 @@ router.get("/:endpoint([\\/\\w\\.-]*)", (req, res) => {
 
 // http://localhost:9000/.netlify/functions/api/description=ruby&page=1
 
-router.get("/test", (req, res) => {
-	res.json({
-		hello: "hi!",
-	});
+router.get("/details/", (req, res) => {
+
+	let endpoint =
+		"https://jobs.github.com/positions/" + req.params.endpoint + ".json";
+	axios
+		.get(endpoint)
+		.then((response) => {
+			res.json(response.data);
+		})
+		.catch((error) => {
+			res.json(error);
+		});
 });
 
 app.use(`/.netlify/functions/api`, router);
